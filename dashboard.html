@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a class="active" href="dashboard.html">Dashboard</a>
+          <a href="courses.html">Courses</a>
+          <a href="tests.html">Tests</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="payment.html">Payments</a>
+          <a href="about.html">About</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="hero">
+            <div>
+              <span class="badge success">Active Learner</span>
+              <h1>Hello, <span data-user-name>Learner</span>.</h1>
+              <p>Your AI workspace is ready. Track progress, unlock courses, and explore AI services.</p>
+            </div>
+            <div class="glass-card">
+              <h3>AI Services Overview</h3>
+              <p>
+                Request AI strategy, model development, automation, or enterprise AI transformation
+                directly from GAURAV AI.
+              </p>
+              <a class="btn btn-primary" href="about.html">Book a consultation</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="container">
+          <h2 class="section-title">Your Purchases</h2>
+          <div class="grid grid-3" data-purchased></div>
+        </section>
+
+        <section class="container" style="margin-top: 40px;">
+          <h2 class="section-title">Quick Stats</h2>
+          <div class="grid grid-3">
+            <div class="glass-card stat">
+              <span>Learning Streak</span>
+              <strong>12 days</strong>
+              <span class="muted">Keep the momentum.</span>
+            </div>
+            <div class="glass-card stat">
+              <span>Tests Completed</span>
+              <strong>03</strong>
+              <span class="muted">Latest score saved.</span>
+            </div>
+            <div class="glass-card stat">
+              <span>AI Projects</span>
+              <strong>05</strong>
+              <span class="muted">Build real-world apps.</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/user.js"></script>
+  </body>
+</html>

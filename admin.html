@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true" data-admin="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a class="active" href="admin.html">Admin</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="dashboard.html">User View</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="hero">
+            <div>
+              <h1>Admin Command Center</h1>
+              <p>Monitor users, manage access, and track revenue in real time.</p>
+            </div>
+            <div class="glass-card">
+              <h3>Admin Insights</h3>
+              <p>Total users: <strong data-total-users>0</strong></p>
+              <p>Revenue: <strong data-total-revenue>₹0</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container">
+          <div class="glass-card">
+            <h2>User Access Control</h2>
+            <p>Toggle course access manually when needed.</p>
+            <div style="overflow-x:auto; margin-top: 16px;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Purchases</th>
+                    <th>Course Selector</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody data-admin-users></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>
