@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true" data-admin="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="admin.html">Admin</a>
+          <a class="active" href="analytics.html">Analytics</a>
+          <a href="dashboard.html">User View</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="hero">
+            <div>
+              <h1>Analytics Dashboard</h1>
+              <p>Track platform growth, purchases, and engagement.</p>
+            </div>
+            <div class="glass-card">
+              <h3>Active users</h3>
+              <p><strong data-analytics-active>0</strong> learners</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container">
+          <div class="grid grid-3">
+            <div class="glass-card stat">
+              <span>Total Users</span>
+              <strong data-analytics-users>0</strong>
+              <span class="muted">Registered accounts</span>
+            </div>
+            <div class="glass-card stat">
+              <span>Total Revenue</span>
+              <strong data-analytics-revenue>₹0</strong>
+              <span class="muted">Calculated from purchases</span>
+            </div>
+            <div class="glass-card stat">
+              <span>Avg. Course Completion</span>
+              <strong>68%</strong>
+              <span class="muted">Demo metric</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="container" style="margin-top: 32px;">
+          <div class="glass-card">
+            <h2>Course-wise Purchases</h2>
+            <div data-course-graph style="margin-top: 16px;"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/analytics.js"></script>
+  </body>
+</html>

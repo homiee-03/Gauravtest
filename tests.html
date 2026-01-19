@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tests · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="courses.html">Courses</a>
+          <a class="active" href="tests.html">Tests</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="hero">
+            <div>
+              <h1>AI Skill Tests</h1>
+              <p>Timed assessments to track your AI readiness and progress.</p>
+            </div>
+            <div class="glass-card">
+              <h3>Timer</h3>
+              <p>30 minutes · 25 questions</p>
+              <span class="badge">Auto-save enabled</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="container">
+          <div class="glass-card">
+            <h2>Available Tests</h2>
+            <ul>
+              <li>AI Fundamentals Benchmark</li>
+              <li>Applied AI Scenario Test</li>
+              <li>Advanced AI Systems Quiz</li>
+            </ul>
+            <form id="tests-form" style="margin-top: 16px;">
+              <button class="btn btn-primary" type="submit">Submit Test</button>
+            </form>
+            <p class="muted" data-tests-status>Latest score will appear here.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/user.js"></script>
+  </body>
+</html>

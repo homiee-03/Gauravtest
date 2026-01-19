@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login · GAURAV AI</title>
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+  </head>
+  <body data-redirect="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html">Courses</a>
+          <a class="active" href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="glass-card form-card">
+            <h2>Welcome back</h2>
+            <p>Log in to access your AI workspace and courses.</p>
+            <form id="login-form">
+              <label for="login-email">Email address</label>
+              <input id="login-email" type="email" placeholder="you@email.com" required />
+
+              <label for="login-password">Password</label>
+              <input id="login-password" type="password" placeholder="••••••••" required />
+
+              <button class="btn btn-primary" type="submit">Log in</button>
+            </form>
+            <small data-toast>Initializing secure login…</small>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+      import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
+      const loginForm = document.querySelector("#login-form");
+      const toast = document.querySelector("[data-toast]");
+      const loader = document.querySelector(".loader");
+      const db = getFirestore();
+      const adminEmail = "admin@gauravai.com";
+
+      const setLoader = (state) => {
+        if (!loader) return;
+        loader.classList.toggle("active", state);
+      };
+
+      if (toast) {
+        toast.textContent = "Use your GAURAV AI credentials to continue.";
+      }
+
+      if (loginForm) {
+        loginForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          setLoader(true);
+          const email = loginForm.querySelector("#login-email").value.trim();
+          const password = loginForm.querySelector("#login-password").value.trim();
+
+          try {
+            await signInWithEmailAndPassword(auth, email, password);
+            const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
+            const userData = userDoc.data();
+            const role = userData?.role || (email.toLowerCase() === adminEmail ? "admin" : "user");
+            if (toast) toast.textContent = "Welcome back! Redirecting…";
+            window.location.href = role === "admin" ? "admin.html" : "dashboard.html";
+          } catch (error) {
+            if (toast) toast.textContent = error.message;
+          } finally {
+            setLoader(false);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

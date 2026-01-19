@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="courses.html">Courses</a>
+          <a class="active" href="payment.html">Payment</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="glass-card">
+            <h2>Secure Payment</h2>
+            <p>Complete your payment to unlock the selected course instantly.</p>
+          </div>
+        </section>
+
+        <section class="container" style="margin-top: 24px;">
+          <div class="grid grid-3">
+            <div class="glass-card" data-payment-details>
+              <h2>AI Foundation</h2>
+              <p>Master AI fundamentals, ML workflows, and core tooling.</p>
+              <p class="pill">Total: ₹999</p>
+            </div>
+            <div class="glass-card qr-card">
+              <h3>QR Scanner</h3>
+              <p>Scan to pay with any UPI app.</p>
+              <img
+                class="qr-image"
+                src="assets/upi-999.svg"
+                alt="UPI payment QR code"
+                data-qr-image
+              />
+              <div class="qr-meta">
+                <span data-qr-name>SAURABH VERMA</span>
+                <span data-qr-upi>UPI ID: sauravvarmag8@oksbi</span>
+                <span data-qr-amount>Amount: ₹999.00</span>
+              </div>
+            </div>
+            <div class="glass-card">
+              <h3>Payment Status</h3>
+              <p>Use any UPI app to complete the dummy payment.</p>
+              <button class="btn btn-primary" data-pay-now>Pay Now</button>
+              <div class="notice" style="margin-top: 16px;">
+                Auto-unlock will trigger once payment is confirmed.
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/user.js"></script>
+  </body>
+</html>

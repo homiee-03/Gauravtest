@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up · GAURAV AI</title>
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+  </head>
+  <body>
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html">Courses</a>
+          <a href="login.html">Login</a>
+          <a class="active" href="signup.html">Sign Up</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="glass-card form-card">
+            <h2>Create your GAURAV AI account</h2>
+            <p>Start your premium AI learning journey today.</p>
+            <form id="signup-form">
+              <label for="signup-name">Full name</label>
+              <input id="signup-name" type="text" placeholder="Your name" required />
+
+              <label for="signup-email">Email address</label>
+              <input id="signup-email" type="email" placeholder="you@email.com" required />
+
+              <label for="signup-password">Password</label>
+              <input id="signup-password" type="password" placeholder="••••••••" required />
+
+              <button class="btn btn-primary" type="submit">Create account</button>
+            </form>
+            <small data-toast>Initializing secure signup…</small>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+      import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+      import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
+      const signupForm = document.querySelector("#signup-form");
+      const toast = document.querySelector("[data-toast]");
+      const loader = document.querySelector(".loader");
+      const db = getFirestore();
+      const adminEmail = "admin@gauravai.com";
+
+      const setLoader = (state) => {
+        if (!loader) return;
+        loader.classList.toggle("active", state);
+      };
+
+      if (toast) {
+        toast.textContent = "We respect your privacy and data security.";
+      }
+
+      if (signupForm) {
+        signupForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          setLoader(true);
+          const name = signupForm.querySelector("#signup-name").value.trim();
+          const email = signupForm.querySelector("#signup-email").value.trim();
+          const password = signupForm.querySelector("#signup-password").value.trim();
+
+          try {
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            const role = email.toLowerCase() === adminEmail ? "admin" : "user";
+            await setDoc(doc(db, "users", result.user.uid), {
+              name,
+              email,
+              role,
+              purchasedCourses: []
+            });
+            if (toast) toast.textContent = "Account created. Redirecting to login…";
+            window.location.href = "login.html";
+          } catch (error) {
+            if (toast) toast.textContent = error.message;
+          } finally {
+            setLoader(false);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
