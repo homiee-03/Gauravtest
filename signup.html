@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up · GAURAV AI</title>
-    <link rel="preload" href="css/style.css" as="style" />
-    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div class="loader"><span></span></div>
@@ -40,58 +38,12 @@
 
               <button class="btn btn-primary" type="submit">Create account</button>
             </form>
-            <small data-toast>Initializing secure signup…</small>
+            <small data-toast>We respect your privacy and data security.</small>
           </div>
         </section>
       </main>
     </div>
 
-    <script type="module">
-      import { auth } from "./js/firebase.js";
-      import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-      import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
-
-      const signupForm = document.querySelector("#signup-form");
-      const toast = document.querySelector("[data-toast]");
-      const loader = document.querySelector(".loader");
-      const db = getFirestore();
-      const adminEmail = "admin@gauravai.com";
-
-      const setLoader = (state) => {
-        if (!loader) return;
-        loader.classList.toggle("active", state);
-      };
-
-      if (toast) {
-        toast.textContent = "We respect your privacy and data security.";
-      }
-
-      if (signupForm) {
-        signupForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          setLoader(true);
-          const name = signupForm.querySelector("#signup-name").value.trim();
-          const email = signupForm.querySelector("#signup-email").value.trim();
-          const password = signupForm.querySelector("#signup-password").value.trim();
-
-          try {
-            const result = await createUserWithEmailAndPassword(auth, email, password);
-            const role = email.toLowerCase() === adminEmail ? "admin" : "user";
-            await setDoc(doc(db, "users", result.user.uid), {
-              name,
-              email,
-              role,
-              purchasedCourses: []
-            });
-            if (toast) toast.textContent = "Account created. Redirecting to login…";
-            window.location.href = "login.html";
-          } catch (error) {
-            if (toast) toast.textContent = error.message;
-          } finally {
-            setLoader(false);
-          }
-        });
-      }
-    </script>
+    <script type="module" src="js/auth.js"></script>
   </body>
 </html>

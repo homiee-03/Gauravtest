@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login · GAURAV AI</title>
-    <link rel="preload" href="css/style.css" as="style" />
-    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body data-redirect="true">
     <div class="loader"><span></span></div>
@@ -37,53 +35,12 @@
 
               <button class="btn btn-primary" type="submit">Log in</button>
             </form>
-            <small data-toast>Initializing secure login…</small>
+            <small data-toast>Use your GAURAV AI credentials to continue.</small>
           </div>
         </section>
       </main>
     </div>
 
-    <script type="module">
-      import { auth } from "./js/firebase.js";
-      import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
-
-      const loginForm = document.querySelector("#login-form");
-      const toast = document.querySelector("[data-toast]");
-      const loader = document.querySelector(".loader");
-      const db = getFirestore();
-      const adminEmail = "admin@gauravai.com";
-
-      const setLoader = (state) => {
-        if (!loader) return;
-        loader.classList.toggle("active", state);
-      };
-
-      if (toast) {
-        toast.textContent = "Use your GAURAV AI credentials to continue.";
-      }
-
-      if (loginForm) {
-        loginForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          setLoader(true);
-          const email = loginForm.querySelector("#login-email").value.trim();
-          const password = loginForm.querySelector("#login-password").value.trim();
-
-          try {
-            await signInWithEmailAndPassword(auth, email, password);
-            const userDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
-            const userData = userDoc.data();
-            const role = userData?.role || (email.toLowerCase() === adminEmail ? "admin" : "user");
-            if (toast) toast.textContent = "Welcome back! Redirecting…";
-            window.location.href = role === "admin" ? "admin.html" : "dashboard.html";
-          } catch (error) {
-            if (toast) toast.textContent = error.message;
-          } finally {
-            setLoader(false);
-          }
-        });
-      }
-    </script>
+    <script type="module" src="js/auth.js"></script>
   </body>
 </html>
