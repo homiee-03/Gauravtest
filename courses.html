@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-protected="true">
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a class="active" href="courses.html">Courses</a>
+          <a href="tests.html">Tests</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="#" data-logout>Logout</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="hero">
+            <div>
+              <h1>Premium AI Courses</h1>
+              <p>Unlock curated AI pathways designed by enterprise AI architects.</p>
+            </div>
+            <div class="glass-card">
+              <h3>Learning Guarantee</h3>
+              <p>Each course includes hands-on labs, templates, and AI mentor sessions.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container">
+          <div class="grid grid-3" data-course-grid></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/user.js"></script>
+  </body>
+</html>

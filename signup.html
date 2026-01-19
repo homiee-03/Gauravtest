@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up · GAURAV AI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="loader"><span></span></div>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="brand">
+          <span>GAURAV</span> AI
+        </div>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html">Courses</a>
+          <a href="login.html">Login</a>
+          <a class="active" href="signup.html">Sign Up</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <section class="container">
+          <div class="glass-card form-card">
+            <h2>Create your GAURAV AI account</h2>
+            <p>Start your premium AI learning journey today.</p>
+            <form id="signup-form">
+              <label for="signup-name">Full name</label>
+              <input id="signup-name" type="text" placeholder="Your name" required />
+
+              <label for="signup-email">Email address</label>
+              <input id="signup-email" type="email" placeholder="you@email.com" required />
+
+              <label for="signup-password">Password</label>
+              <input id="signup-password" type="password" placeholder="••••••••" required />
+
+              <button class="btn btn-primary" type="submit">Create account</button>
+            </form>
+            <small data-toast>We respect your privacy and data security.</small>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+  </body>
+</html>
